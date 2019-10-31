@@ -33,6 +33,7 @@ cc_binary(
     "-g",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -53,6 +54,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -75,6 +77,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -102,6 +105,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -130,6 +134,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -149,6 +154,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -166,6 +172,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -183,6 +190,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -200,6 +208,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -217,6 +226,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -234,6 +244,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -251,6 +262,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -268,6 +280,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -285,6 +298,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -302,6 +316,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -319,6 +334,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -336,6 +352,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -353,6 +370,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -370,6 +388,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -387,6 +406,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -405,6 +425,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -433,6 +454,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -447,6 +469,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -461,6 +484,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -472,6 +496,7 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -485,6 +510,7 @@ cc_library(
     "-g",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
 
 cc_library(
@@ -498,4 +524,5 @@ cc_library(
     "-std=c++11",
     "-Wall",
     ],
+  visibility = ["//visibility:public"],
 )
