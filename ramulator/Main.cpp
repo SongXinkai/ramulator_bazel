@@ -87,8 +87,8 @@ void start_run(const Config& configs, T* spec) {
 int main(int argc, const char *argv[])
 {
     if (argc < 3) {
-        printf("Usage: %s <configs-file>\n"
-            "Example: %s ramulator-configs.cfg\n", argv[0], argv[0]);
+        printf("Usage: %s <configs-file> <memory access interval>\n"
+            "Example: %s ramulator-configs.cfg 16\n", argv[0], argv[0]);
         return 0;
     }
     Config configs(argv[1]);
