@@ -1,0 +1,501 @@
+cc_binary(
+  name="main",
+  srcs=[
+    "Main.cpp",
+    ],
+  deps=[
+    ":Processor",
+    ":Config",
+    ":Controller",
+    ":SpeedyController",
+    ":Memory",
+    ":DRAM",
+    ":Statistics",
+    ":Gem5Wrapper",
+    ":DDR3",
+    ":DDR4",
+    ":DSARP",
+    ":GDDR5",
+    ":LPDDR3",
+    ":LPDDR4",
+    ":WideIO",
+    ":WideIO2",
+    ":HBM",
+    ":SALP",
+    ":ALDRAM",
+    ":TLDRAM",
+    ":STTMRAM",
+    ":PCM",
+    ],
+  copts=[
+    "-O3",
+    "-std=c++11",
+    "-g",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="Processor",
+  srcs=["Processor.cpp",
+    ],
+  hdrs=["Processor.h",],
+  deps=[
+    ":Cache",
+    ":Config",
+    ":Memory",
+    ":Request",
+    ":Statistics",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="MemoryFactory",
+  srcs=["MemoryFactory.cpp",
+    ],
+  hdrs=["MemoryFactory.h",],
+  deps=[
+    ":Config",
+    ":Memory",
+    ":WideIO2",
+    ":WideIO",
+    ":SALP",
+    ":LPDDR4",
+    ":HBM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="Memory",
+  srcs=[
+    ],
+  hdrs=["Memory.h",],
+  deps=[
+    ":Config",
+    ":DRAM",
+    ":Request",
+    ":Controller",
+    ":SpeedyController",
+    ":Statistics",
+    ":GDDR5",
+    ":HBM",
+    ":LPDDR3",
+    ":LPDDR4",
+    ":WideIO2",
+    ":DSARP",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="Controller",
+  srcs=["Controller.cpp",
+    "Refresh.cpp",
+    ],
+  hdrs=[
+    "Refresh.h",
+    "Controller.h",
+    "Scheduler.h",
+    ],
+  deps=[
+    ":Config",
+    ":DRAM",
+    ":DSARP",
+    ":Request",
+    ":Statistics",
+    ":ALDRAM",
+    ":SALP",
+    ":TLDRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="SpeedyController",
+  srcs=[
+    ],
+  hdrs=["SpeedyController.h",],
+  deps=[
+    ":Config",
+    ":DRAM",
+    ":Request",
+    ":Statistics",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="DDR3",
+  srcs=["DDR3.cpp",
+    ],
+  hdrs=["DDR3.h",],
+  deps=[
+    ":Request",
+    ":DRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="DDR4",
+  srcs=["DDR4.cpp",
+    ],
+  hdrs=["DDR4.h",],
+  deps=[
+    ":Request",
+    ":DRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="DSARP",
+  srcs=["DSARP.cpp",
+    ],
+  hdrs=["DSARP.h",],
+  deps=[
+    ":Request",
+    ":DRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="GDDR5",
+  srcs=["GDDR5.cpp",
+    ],
+  hdrs=["GDDR5.h",],
+  deps=[
+    ":Request",
+    ":DRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="LPDDR3",
+  srcs=["LPDDR3.cpp",
+    ],
+  hdrs=["LPDDR3.h",],
+  deps=[
+    ":Request",
+    ":DRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="LPDDR4",
+  srcs=["LPDDR4.cpp",
+    ],
+  hdrs=["LPDDR4.h",],
+  deps=[
+    ":Request",
+    ":DRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="WideIO",
+  srcs=["WideIO.cpp",
+    ],
+  hdrs=["WideIO.h",],
+  deps=[
+    ":Request",
+    ":DRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="WideIO2",
+  srcs=["WideIO2.cpp",
+    ],
+  hdrs=["WideIO2.h",],
+  deps=[
+    ":Request",
+    ":DRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="HBM",
+  srcs=["HBM.cpp",
+    ],
+  hdrs=["HBM.h",],
+  deps=[
+    ":Request",
+    ":DRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="SALP",
+  srcs=["SALP.cpp",
+    ],
+  hdrs=["SALP.h",],
+  deps=[
+    ":Request",
+    ":DRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="ALDRAM",
+  srcs=["ALDRAM.cpp",
+    ],
+  hdrs=["ALDRAM.h",],
+  deps=[
+    ":Request",
+    ":DRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="TLDRAM",
+  srcs=["TLDRAM.cpp",
+    ],
+  hdrs=["TLDRAM.h",],
+  deps=[
+    ":Request",
+    ":DRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="STTMRAM",
+  srcs=["STTMRAM.cpp",
+    ],
+  hdrs=["STTMRAM.h",],
+  deps=[
+    ":Request",
+    ":DRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="PCM",
+  srcs=["PCM.cpp",
+    ],
+  hdrs=["PCM.h",],
+  deps=[
+    ":Request",
+    ":DRAM",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="Cache",
+  srcs=["Cache.cpp",
+    ],
+  hdrs=["Cache.h",],
+  deps=[
+    ":Config",
+    ":Request",
+    ":Statistics",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="Gem5Wrapper",
+  srcs=["Gem5Wrapper.cpp",
+    ],
+  hdrs=["Gem5Wrapper.h",],
+  deps=[
+    ":Config",
+    ":Controller",
+    ":MemoryFactory",
+    ":Memory",
+    ":DDR3",
+    ":DDR4",
+    ":GDDR5",
+    ":LPDDR3",
+    ":LPDDR4",
+    ":WideIO",
+    ":WideIO2",
+    ":HBM",
+    ":SALP",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="DRAM",
+  hdrs=["DRAM.h",],
+  deps=[
+    ":Statistics",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="Statistics",
+  hdrs=["Statistics.h",],
+  deps=[
+    ":StatType",
+     ],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="Request",
+  hdrs=["Request.h",],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="StatType",
+  srcs=["StatType.cpp",
+    ],
+  hdrs=["StatType.h",],
+  copts=[
+    "-O3",
+    "-std=c++11",
+    "-g",
+    "-Wall",
+    ],
+)
+
+cc_library(
+  name="Config",
+  srcs=["Config.cpp",
+    ],
+  hdrs=["Config.h",],
+  copts=[
+    "-g",
+    "-O3",
+    "-std=c++11",
+    "-Wall",
+    ],
+)
