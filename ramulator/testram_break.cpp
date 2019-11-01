@@ -14,18 +14,11 @@ int main(int argc, const char *argv[]){
   Ram<ramulator::DDR3> ram(argv[1]);
   ram.SetFrequency(1.0);
   int addr_interval = std::stoi(argv[2]);
-  long last_access_time = -1;
-  int same_access_time_count = 0;
   for (int i = 0; i < 1000; ++i){
-    long access_time = ram.AccessAndWaitUntilReturn(long(20734016 + i * addr_interval), ramulator::Request::Type::READ);
-    if (last_access_time != access_time && last_access_time > 0){
-        cout << "access id: " << i << ", cycles: " << last_access_time << " (" << same_access_time_count << ")" << endl;
-        same_access_time_count = 1;
-    }else{
-        same_access_time_count ++;
-    }
-    last_access_time = access_time;
+    ram.AccessCommand(long(20734016 + i * addr_interval), ramulator::Request::Type::READ);
+    ram.WaitFor(10);
   }
+  ram.WaitUntil(80000);
   std::cout << "total cycles: " << ram.GetClockRealtime() << std::endl;
   return 0;
 }

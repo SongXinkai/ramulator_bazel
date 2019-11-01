@@ -32,16 +32,21 @@ class Ram{
 public:
   Ram(const std::string& config_file);
   ~Ram();
-  long AccessMemory(const long req_addr, const Request::Type req_type);
-  long AccessMemory(const long send_clk_processor, const long req_addr, const Request::Type req_type);
-  long ConvertCyclesRam2Processor(const long cycles);
-  long ConvertCyclesProcessor2Ram(const long cycles);
-  void SetProcessorFrequencyRatio(const double r);
-  long GetClockProcessor();
-  long GetClockRam();
+  // Loop: memory_->tick()
+  void WaitUntil(const double time);
+  void WaitFor(const double time);
+  // memory_->send() and memory_->tick()
+  void AccessCommand(const long req_addr, const Request::Type req_type);
+  // memory_->send() and Loop: memory_->tick(), return: realtime from send to return
+  double AccessAndWaitUntilReturn(const long req_addr, const Request::Type req_type);
+  double ConvertRamCycle2Realtime(const long ram_cycle);
+  long ConvertRealtime2RamCycle(const double realtime);
+  void SetFrequency(const double r);
+  double GetClockRealtime(); // unit: ns
+  long GetClockRam(); // unit: ram cycle
 protected:
   void InitMemory(const Config& configs, T* spec);
-  double processor_frequency_ratio_;
+  double frequency_; // unit: Ghz
   long clk_;
   std::shared_ptr<Memory<T, Controller> > memory_;
 };

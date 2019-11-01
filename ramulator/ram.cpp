@@ -5,7 +5,7 @@
 template<typename T>
 Ram<T>::Ram(const std::string& config_file){
   clk_ = 0;
-  processor_frequency_ratio_ = 1;
+  frequency_ = 1;
   Config configs(config_file);
   const std::string& standard = configs["standard"];
   assert(standard != "" || "DRAM standard should be specified.");
@@ -93,8 +93,46 @@ void Ram<T>::InitMemory(const Config& configs, T* spec){
   memory_ = std::make_shared<Memory<T, Controller> >(configs, ctrls);
 }
 
+  // Loop: memory_->tick()
 template<typename T>
-long Ram<T>::AccessMemory(const long req_addr, const Request::Type req_type){
+void Ram<T>::WaitUntil(const double time){
+  long ram_time = long(std::ceil(time * frequency_));
+  while (clk_ < ram_time){
+    memory_->tick();
+    clk_ ++;
+  }
+}
+
+// Loop: memory_->tick()
+template<typename T>
+void Ram<T>::WaitFor(const double time){
+  long ram_time = long(std::ceil(time * this->frequency_));
+  for (long i = 0; i < ram_time; ++i){
+    memory_->tick();
+    clk_ ++;
+  }
+}
+
+// memory_->send() and memory_->tick()
+template<typename T>
+void Ram<T>::AccessCommand(const long req_addr, const Request::Type req_type){
+  bool data_return = false;
+  long req_addr_param = req_addr;
+  auto req_type_param = req_type;
+  auto clk = this->clk_;
+  auto callback = std::function<void(Request&)>(
+    [&data_return, clk, this](Request& rq){
+      data_return = true;
+      std::cout << "send at: " << clk << ", recieve at: " << this->clk_ << " (" << this->clk_-clk << ")" << std::endl;
+    });
+  Request req(req_addr_param, req_type_param, callback, 0);
+  memory_->send(req);
+  memory_->tick();
+  clk_++;
+}
+
+template<typename T>
+double Ram<T>::AccessAndWaitUntilReturn(const long req_addr, const Request::Type req_type){
   long tmp_clk = 0;
   bool data_return = false;
   long req_addr_param = req_addr;
@@ -107,51 +145,27 @@ long Ram<T>::AccessMemory(const long req_addr, const Request::Type req_type){
     clk_ ++;
     tmp_clk ++;
   }
-  return ConvertCyclesRam2Processor(tmp_clk);
+  return ConvertRamCycle2Realtime(tmp_clk);
 }
 
 template<typename T>
-long Ram<T>::AccessMemory(const long send_clk_processor, const long req_addr, const Request::Type req_type){
-  long send_clk = ConvertCyclesRam2Processor(send_clk_processor);
-  long tmp_clk = 0;
-  while (clk_ < send_clk){
-    memory_->tick();
-    clk_ ++;
-    tmp_clk ++;
-  }
-  bool data_return = false;
-  long req_addr_param = req_addr;
-  auto req_type_param = req_type;
-  auto callback = std::function<void(Request&)>([&data_return](Request& rq){data_return = true;});
-  Request req(req_addr_param, req_type_param, callback, 0);
-  memory_->send(req);
-  while (!data_return){
-    memory_->tick();
-    clk_ ++;
-    tmp_clk ++;
-  }
-  return ConvertCyclesRam2Processor(tmp_clk);
+double Ram<T>::ConvertRamCycle2Realtime(const long cycles){
+  return double(cycles) / frequency_;
 }
 
 template<typename T>
-long Ram<T>::ConvertCyclesRam2Processor(const long cycles){
-  return long(double(cycles) * processor_frequency_ratio_);
+long Ram<T>::ConvertRealtime2RamCycle(const double realtime){
+  return long(double(realtime) * frequency_);
 }
 
 template<typename T>
-long Ram<T>::ConvertCyclesProcessor2Ram(const long cycles){
-  return long(double(cycles) / processor_frequency_ratio_);
+void Ram<T>::SetFrequency(const double r){
+  this->frequency_ = r;
 }
 
 template<typename T>
-void Ram<T>::SetProcessorFrequencyRatio(const double r){
-  void SetProcessorFrequencyRatio(const double r);
-  this->processor_frequency_ratio_ = r;
-}
-
-template<typename T>
-long Ram<T>::GetClockProcessor(){
-  return this->clk_ * processor_frequency_ratio_;
+double Ram<T>::GetClockRealtime(){
+  return double(this->clk_) * frequency_;
 }
 
 template<typename T>

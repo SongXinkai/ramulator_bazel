@@ -1,4 +1,20 @@
 cc_binary(
+  name="testram_break",
+  srcs=[
+    "testram_break.cpp",
+  ],
+  deps=[
+    "ram",
+  ],
+  copts=[
+    "-O3",
+    "-std=c++11",
+    "-g",
+    "-Wall",
+    ],
+)
+
+cc_binary(
   name="testram",
   srcs=[
     "testram.cpp",
