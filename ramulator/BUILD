@@ -1,4 +1,20 @@
 cc_binary(
+  name="testram",
+  srcs=[
+    "testram.cpp",
+  ],
+  deps=[
+    "ram",
+  ],
+  copts=[
+    "-O3",
+    "-std=c++11",
+    "-g",
+    "-Wall",
+    ],
+)
+
+cc_binary(
   name="main",
   srcs=[
     "Main.cpp",
@@ -27,6 +43,46 @@ cc_binary(
     ":STTMRAM",
     ":PCM",
     ],
+  copts=[
+    "-O3",
+    "-std=c++11",
+    "-g",
+    "-Wall",
+    ],
+  visibility = ["//visibility:public"],
+)
+
+cc_library(
+  name="ram",
+  srcs=[
+    "ram.cpp",
+    ],
+  hdrs=[
+    "ram.h",
+  ],
+  deps=[
+    ":Config",
+    ":Controller",
+    ":SpeedyController",
+    ":Memory",
+    ":DRAM",
+    ":Statistics",
+    ":Gem5Wrapper",
+    ":DDR3",
+    ":DDR4",
+    ":DSARP",
+    ":GDDR5",
+    ":LPDDR3",
+    ":LPDDR4",
+    ":WideIO",
+    ":WideIO2",
+    ":HBM",
+    ":SALP",
+    ":ALDRAM",
+    ":TLDRAM",
+    ":STTMRAM",
+    ":PCM",
+  ],
   copts=[
     "-O3",
     "-std=c++11",
